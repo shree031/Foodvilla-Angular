@@ -1,0 +1,21 @@
+
+.box {
+  width: 360px;
+  height: 600px;
+  background-color: rgba(6, 2, 1, 0.5);
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(235, 199, 175, 0.1);
+  box-shadow: 2px 2px 15px rgba(235, 199, 175, 0.3);
+  color: #fff;
+}
+
+.bg-image {
+  background: url("/assets/images/login10.jpeg") no-repeat;
+  background-size: cover;
+}
+
+.signup-box {
+  width: 280px;
+  color: #ebc7af;
+}

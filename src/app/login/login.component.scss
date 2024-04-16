@@ -1,0 +1,36 @@
+.bg-image {
+  background: url("/assets/images/login10.jpeg") no-repeat;
+  background-size: cover;
+}
+
+
+.login-box {
+  width: 280px;
+  color: #ebc7af;
+}
+
+.box {
+  width: 340px;
+  height: 450px;
+  background-color: rgba(6, 2, 1, 0.5);
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(235, 199, 175, 0.1);
+  box-shadow: 2px 2px 15px rgba(235, 199, 175, 0.3);
+  color: #fff;
+}
+
+.login-box h1 {
+  float: none;
+  font-size: 40px;
+  border-bottom: 6px solid #ebc7af;
+  margin-bottom: 50px;
+  padding: 13px 0;
+}
+
+.text-box i {
+  width: 26px;
+  float: left;
+  text-align: center;
+}
+

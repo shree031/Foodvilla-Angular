@@ -1,0 +1,70 @@
+.plate {
+  aspect-ratio: 0/2;
+  height: 350px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 17px 10px black;
+}
+
+.sub-header {
+  height: 50vh;
+  width: 100%;
+  background-image: url("/assets/images/foodvilla-background.png");
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: #ffff;
+}
+
+.bg-image {
+  width: 100%;
+  position: absolute;
+  background-position-y: bottom;
+  background-image: url(/assets/images/foodvilla-background.png);
+  background-position-x: center;
+  background-size: cover;
+  height: 900px;
+  box-shadow: 0px 36px 94px 100px #fe8100;
+  z-index: -1;
+}
+
+.blogs {
+  flex-flow: wrap;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.blog-img {
+  width: 150px;
+  aspect-ratio: 2/2;
+  position: absolute;
+  border-radius: 18%;
+  top: -125px;
+  left: 32%;
+  border: 1px solid #fe8100;
+  box-shadow: 0px 0px 5px 0px #fe8100;
+}
+
+.specialities {
+  width: 100%;
+  padding-bottom: 30px;
+  cursor: pointer;
+  background: linear-gradient(360deg, rgba(255, 130, 0, 1) 0%, rgba(246, 230, 219, 1) 100%);
+  box-shadow: 0px 3px 15px -6px grey;
+  border-bottom: 1px solid dimgrey;
+}
+
+
+.speciality-img {
+  border-radius: 50%;
+  height: 200px;
+  aspect-ratio: 2/2;
+  bottom: 95px;
+}
+
+.icon-style i {
+  font-size: 50px;
+  padding: 10px;
+  display: inline-block;
+}
+
