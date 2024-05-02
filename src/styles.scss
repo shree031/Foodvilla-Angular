@@ -1,1 +1,158 @@
 /* You can add global styles to this file, and also import other style files */
+//Theme
+html, body {
+  background-color: #f6e6db;
+}
+
+.default-background {
+  background-color: #f6e6db;
+}
+
+.theme-color-2 {
+  background-color: #fe8100;
+}
+
+// font-family
+.cursive {
+  font-family: cursive;
+}
+
+//font-size
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
+
+.fs-22 {
+  font-size: 22px;
+}
+
+.fs-28 {
+  font-size: 28px;
+}
+
+.fs-60 {
+  font-size: 60px;
+}
+
+//width
+.w-40 {
+  width: 40%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+//height
+.h-500{
+  height: 500px;
+}
+
+//Border radius
+.br-40 {
+  border-radius: 40px;
+}
+
+.br-50 {
+  border-radius: 50%;
+}
+
+.br-8 {
+  border-radius: 8px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.select-style {
+  color: #ebc7af;
+  width: 100%;
+  padding: 7px 5px;
+  margin: 4px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: #180c09;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: none;
+  margin-left: 0px;
+}
+
+
+.text-box {
+  width: 100%;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 8px 0;
+  margin: 8px 0;
+  border-bottom: 1px solid #ebc7af;
+}
+
+.text-box input, textarea{
+  border: none;
+  outline: none;
+  background: none;
+  color: #ebc7af;
+  font-size: 20px;
+  width: 80%;
+  float: left;
+  margin: 0 10px;
+}
+
+.text-box button {
+  width: 100%;
+  background: 2px solid #ebc7af;
+  color: #ebc7af;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+  border: 2px solid #ebc7af;
+}
+
+.transparent-box {
+  background-color: rgba(6, 2, 1, 0.5);
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(235, 199, 175, 0.1);
+  box-shadow: 2px 2px 15px rgba(235, 199, 175, 0.3);
+  color: #ffff;
+}
+
+
+.bg-image {
+  background: url("/assets/images/login10.jpeg") no-repeat;
+  background-size: cover;
+}
+
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to two lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* To ensure that ellipsis are added */
+.description::after {
+  content: ' ....';
+}
