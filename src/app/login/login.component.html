@@ -2,31 +2,40 @@
   <div class="box center">
     <div class="login-box">
       <h1 class="text-center">LOGIN</h1>
-      <form name=login method="GET" action="">
+      <!-- Error message -->
+      <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+      <form #loginForm="ngForm"
+            (ngSubmit)="login(loginForm.value.username, loginForm.value.password, loginForm.value.userType)">
+        <!-- Username input -->
         <div class="text-box">
           <i class="bi bi-person-circle"></i>
-          <input type="text" name=username placeholder="Username">
+          <input type="text" name="username" placeholder="Username" ngModel required>
+          <div *ngIf="loginForm.controls['username']?.touched && loginForm.controls['username'].errors?.['required']"
+               class="text-danger">Username is required
+          </div>
         </div>
+        <!-- Password input -->
         <div class="text-box">
           <i class="bi bi-person-fill-lock"></i>
-          <input type="password" name=t2 placeholder="Password">
+          <input type="password" name="password" placeholder="Password" ngModel required>
+          <div *ngIf="loginForm.controls['password']?.touched && loginForm.controls['password'].errors?.['required']"
+               class="text-danger">Password is required
+          </div>
         </div>
+        <!-- User type dropdown -->
         <div class="text-box">
-          <select name="t3" class="select-style">
+          <select name="userType" class="select-style" ngModel>
             <option value="admin">Admin</option>
-            <option value="user">User</option>
+            <option value="user" selected>User</option>
             <option value="distributor">Distributor</option>
           </select>
         </div>
-        <input
-          class="fw-bold w-100 p-2 fs-18 br-8 default-background"
-          type="submit" value="LOGIN" name=submit>
+        <!-- Submit button -->
+        <input type="submit" class="fw-bold w-100 p-2 fs-18 br-8 default-background text-dark" value="LOGIN"
+               [disabled]="loginForm.invalid">
+        <!-- Sign up link -->
         <div class="center">
-          <p>
-            Not a member yet ?
-            <a href="/signup" class="fw-bold text-decoration-none cursor-pointer">
-              Sign up
-            </a>
+          <p>Not a member yet ? <a href="/signup" class="fw-bold text-decoration-none cursor-pointer">Sign up</a></p>
         </div>
       </form>
     </div>

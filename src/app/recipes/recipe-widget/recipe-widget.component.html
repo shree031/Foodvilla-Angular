@@ -1,1 +1,9 @@
-<p>recipe-widget works!</p>
+<div class="recipe">
+  <video controls poster="{{recipe.thumbnailImageUrl}}">
+    <source src="{{recipe.videoUrl}}" type="video/mp4">
+  </video>
+  <h2>
+    {{recipe.name}}
+  </h2>
+  <p class="description">{{recipe.description}}</p>
+</div>

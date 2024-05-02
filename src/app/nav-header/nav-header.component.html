@@ -1,4 +1,4 @@
-<nav class="d-flex justify-content-between align-items-center my-4">
+<div class="d-flex justify-content-between align-items-center my-4 custom-shadow">
   <div class="ms-3">
     <img class="logo" src="/assets/images/food-logo.png">
   </div>
@@ -6,9 +6,12 @@
     <span (click)="navigateTo('')">Home</span>
     <span (click)="navigateTo('products')">Products</span>
     <span (click)="navigateTo('recipes')">Recipe</span>
-    <span (click)="navigateTo('contact')">Contact Us</span>
+    <span (click)="navigateTo('contactus')">Contact Us</span>
     <span (click)="navigateTo('account')">Account</span>
-    <span (click)="navigateTo('logout')" *ngIf="isLoggedIn">Log out</span>
+    <span (click)="logout()" *ngIf="isLoggedIn">Log out</span>
     <span (click)="navigateTo('login')" *ngIf="!isLoggedIn">Sign in</span>
+    <span  *ngIf="isLoggedIn" class="position-relative"><i class="bi bi-cart fs-28"></i>
+      <span class="position-absolute bg-danger text-white fw-bold br-40 cart px-1 py-0">{{cartQuantity}}</span>
+    </span>
   </div>
-</nav>
+</div>

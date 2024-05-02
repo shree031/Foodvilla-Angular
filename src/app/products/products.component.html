@@ -2,5 +2,19 @@
   <header>
     <app-nav-header></app-nav-header>
   </header>
-  
+  <div class="w-100">
+    <app-search-bar class="center" [items]="products"
+                    (filteredItemsChange)="onFilteredItemsChange($event)"></app-search-bar>
+  </div>
+  <ng-container>
+    <app-loader *ngIf="isLoading"></app-loader>
+  </ng-container>
+  <div class="center flex-wrap mt-4"  *ngIf="!isLoading">
+    <span *ngIf="filteredProducts.length===0">No Products available</span>
+    <div *ngFor="let product of filteredProducts" class="m-3 br-8">
+      <app-product-widget [product]="product"></app-product-widget>
+    </div>
+  </div>
 </div>
+
+

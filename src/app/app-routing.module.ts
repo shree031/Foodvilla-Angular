@@ -6,12 +6,13 @@ import {SignupComponent} from "./signup/signup.component";
 import {ProductsComponent} from "./products/products.component";
 import {AccountComponent} from "./account/account.component";
 import {RecipesComponent} from "./recipes/recipes.component";
+import {ContactUsComponent} from "./contact-us/contact-us.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'recipes', component: RecipesComponent},
-  // { path: 'contact-us', component: ContactUsComponent },
+  { path: 'contactus', component: ContactUsComponent },
   // { path: 'feedback', component: FeedbackComponent },
   {path: 'account', component: AccountComponent},
   {path: 'signup', component: SignupComponent},

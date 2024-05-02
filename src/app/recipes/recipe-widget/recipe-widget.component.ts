@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Recipe} from "../../modals/recipe";
 
 @Component({
   selector: 'app-recipe-widget',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./recipe-widget.component.scss']
 })
 export class RecipeWidgetComponent {
+  @Input()
+  public recipe: any;
 
 }

@@ -1,0 +1,17 @@
+.search-bar {
+  border: 1px solid grey;
+  border-radius: 25px;
+  background: #eacbb6;
+  padding: 3px 10px;
+
+  input {
+    border: none;
+    background: none;
+    font-size: 20px;
+    width: 95%;
+  }
+  input:focus {
+    outline: none; /* Remove the default outline */
+    border: none; /* Remove the border */
+  }
+}

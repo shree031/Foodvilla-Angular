@@ -2,5 +2,19 @@
   <header>
     <app-nav-header></app-nav-header>
   </header>
-
+  <div class="w-100">
+    <app-search-bar class="center" [items]="recipes"
+                    (filteredItemsChange)="onFilteredItemsChange($event)"></app-search-bar>
+  </div>
+  <ng-container>
+    <app-loader *ngIf="isLoading"></app-loader>
+  </ng-container>
+  <div class="center flex-wrap mt-4"  *ngIf="!isLoading">
+    <span *ngIf="filteredRecipes.length===0">No Recipes available</span>
+    <div *ngFor="let recipe of filteredRecipes" class="m-3 br-8">
+      <app-recipe-widget [recipe]="recipe" ></app-recipe-widget>
+    </div>
+  </div>
 </div>
+
+

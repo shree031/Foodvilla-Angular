@@ -2,30 +2,47 @@
   <div class="box center">
     <div class="signup-box">
       <h2 class="text-center">REGISTRATION</h2>
-      <form name=f action="">
+      <form #registrationForm="ngForm" (ngSubmit)="register(registrationForm.value)">
         <div class="text-box">
-          <input type="text" name=t1 placeholder="Enter Username" required>
+          <input type="text" name="username" placeholder="Enter Username" required ngModel>
+          <div
+            *ngIf="registrationForm.controls['username']?.touched && registrationForm.controls['username'].errors?.['required']"
+            class="text-danger error">Username is required
+          </div>
         </div>
         <div class="text-box">
-          <input type="text" name=t4 placeholder="Enter Your Location" required>
+          <input type="password" name="password" placeholder="Enter Password" required ngModel
+                 pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+          <div
+            *ngIf="registrationForm.controls['password']?.touched && (registrationForm.controls['password'].errors?.['required'] || registrationForm.controls['password'].errors?.['pattern'])"
+            class="text-danger error">Password must be at least 8 characters long and contain at least one letter and one
+            number
+          </div>
         </div>
         <div class="text-box">
-          <input type="password" name=t2 placeholder="Enter Password" required>
+          <input type="password" name="confirmPassword" placeholder="Re-Enter Password" required ngModel>
+          <div
+            *ngIf="registrationForm.controls['confirmPassword']?.touched && registrationForm.controls['confirmPassword'].errors?.['required']"
+            class="text-danger error">Confirm Password is required
+          </div>
+          <div
+            *ngIf="registrationForm.controls['confirmPassword']?.touched && registrationForm.controls['confirmPassword'].value !== registrationForm.controls['password'].value"
+            class="text-danger">Passwords must match
+          </div>
         </div>
         <div class="text-box">
-          <input type="password" name=t21 placeholder="Re-Enter Password" required>
+          <input type="text" name="email" placeholder="Enter Email ID" required ngModel>
+          <div
+            *ngIf="registrationForm.controls['email']?.touched && registrationForm.controls['email'].errors?.['required']"
+            class="text-danger error">Email ID is required
+          </div>
         </div>
-        <div class="text-box">
-          <input type="text" name=t3 placeholder="Enter Email ID" required>
-        </div>
-        <div class="text-box">
-          <input type="text" name=t5 placeholder="Enter Your Phone no." required>
-        </div>
-        <select name='t6' class="select-style">
+        <select name="userType" class="select-style" ngModel>
           <option value="user">User</option>
           <option value="distributor">Distributor</option>
         </select>
-        <input type="submit" value="Submit" name=submit class="fw-bold w-100 p-2 mt-2 fs-18 br-8 default-background">
+        <input type="submit" value="Submit" class="fw-bold w-100 p-2 mt-2 fs-18 br-8 default-background text-dark"
+               [disabled]="registrationForm.invalid">
       </form>
     </div>
   </div>

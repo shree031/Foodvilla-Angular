@@ -1,0 +1,7 @@
+@import '../../styles.scss';
+
+.box {
+  @extend .transparent-box;
+  width: 360px;
+  height: 620px;
+}

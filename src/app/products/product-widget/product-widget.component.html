@@ -1,1 +1,16 @@
-<p>product-widget works!</p>
+<div class="transparent-box cursor-pointer br-8 product-item d-flex flex-column justify-content-between ">
+  <div class="">
+    <img [src]="product.imageUrl" class="height-width br-8" alt="{{product.name}}">
+    <div class="p-2">
+      <h5 class="">{{product.name}}</h5>
+      <p class="description">{{product.description}}</p>
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="">
+      <hr>
+      <span class="p-2">Rs. {{product.price}}/-</span>
+      <app-star-rating [(rating)]="product.rating"></app-star-rating>
+    </div>
+  </div>
+</div>

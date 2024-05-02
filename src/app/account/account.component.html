@@ -1,6 +1,37 @@
-<div class="default-background">
+<div class="default-background w-100">
   <header>
     <app-nav-header></app-nav-header>
   </header>
+  <div class="center">
+    <div class="box p-3">
+      <h1 class="cursive text-center w-100">Edit Account</h1>
+      <form class="mx-0" (ngSubmit)="submitForm()" #editForm="ngForm">
+        <div class="d-flex flex-column justify-content-center align-items-center w-600">
+          <div class="text-box">
+            <label>UserName: </label>
+            <input type="text" name="username" [(ngModel)]="formData.username">
+          </div>
+          <div class="text-box">
+            <label>Password: </label>
+            <input type="text" name="password" [(ngModel)]="formData.password">
+          </div>
+          <div class="text-box">
+            <label>Phone: </label>
+            <input type="text" name="phone" [(ngModel)]="formData.phone">
+          </div>
+          <div class="text-box">
+            <label>Email ID: </label>
+            <input type="text" name="email" [(ngModel)]="formData.email">
+          </div>
+          <div class="text-box">
+            <label>Address: </label>
+            <textarea rows="1" name="address" [(ngModel)]="formData.address"></textarea>
+          </div>
+          <button type="submit" class="fw-bold w-100 p-2 fs-18 br-8 default-background">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 
 </div>

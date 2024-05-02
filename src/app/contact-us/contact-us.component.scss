@@ -1,0 +1,59 @@
+.sub-header {
+  height: 40vh;
+  background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(/assets/images/contact_us.png);
+  background-size: auto;
+  background-position: bottom;
+  margin: -20px;
+}
+
+button {
+  width: 80px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #EAC6AE;
+  border: 1px solid #EAC6AE;
+}
+
+
+.contact-us-container {
+  top: 77%;
+  left: 40%;
+
+  p {
+    font-size: 50px;
+  }
+
+  span {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(246, 230, 219, 1) 100%);
+    border-radius: 30px;
+  }
+}
+
+
+.detail-form {
+  bottom: 0px;
+  left: 0px
+}
+
+.border-radius-top {
+  border-radius: 25px 25px 0px 0px;
+  box-shadow: 4px -1px 12px -3px grey;
+}
+
+input {
+  width: 160px;
+  padding: 0px 10px;
+  background-color: #EAC6AE;
+  color: black;
+}
+
+textarea {
+  width: 100%;
+  padding: 0px 10px;
+  border-radius: 8px;
+  background-color: #EAC6AE;
+  border: 1px solid #EAC6AE;
+}
+.height-80{
+  height: 84vh;
+}
