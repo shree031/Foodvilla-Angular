@@ -2,29 +2,29 @@
   <header>
     <app-nav-header></app-nav-header>
   </header>
-  <div class="d-flex justify-content-between flex-column cursive fs-20 height-80">
+  <div class="d-flex justify-content-between flex-column cursive fs-20 calc-height">
     <div class="sub-header">
-      <div class="d-flex position-relative contact-us-container">
+      <div class="d-flex position-absolute contact-us-container top-50 start-50 translate-middle">
       <span class="px-3 br-30">
         <p class="cursive text-dark p-5 py-3">Contact</p>
       </span>
       </div>
     </div>
-    <div class="d-flex justify-content-around cursive fs-20">
-      <div class="bg-white text-dark d-flex flex-column p-5 mx-5 pb-2 border-radius-top">
+    <div class="d-lg-flex justify-content-around  pt-5 cursive fs-20">
+      <div class="bg-white text-dark d-flex flex-column p-5 mx-5  mt-5 pb-2 border-radius-top">
         <h1 class="fs-40 text-muted mb-3">Contact Us on:</h1>
         <p class="ps-2 pt-3"><i class="fa fa-phone-square"></i><span class="ps-2"><b>Phone:</b> 988-124-6737</span></p>
         <p class="ps-2"><i class="fa fa-envelope"></i><span class="ps-2"><b>Email:</b> foodvilla123@gmail.com</span></p>
       </div>
-      <div class="bg-white text-dark d-flex flex-column border-radius-top p-5 mx-5 pb-2">
+      <div class="bg-white text-dark d-flex flex-column border-radius-top p-5 mx-5 pb-2 mt-5">
         <form (ngSubmit)="sendEmail()">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h1 class="fs-40 text-muted me-3">Leave a message</h1>
             <button type="submit" class="ms-2 br-8">Send</button>
           </div>
           <div class="d-flex justify-content-between mb-4">
-            <input type="text" name="fullName" [(ngModel)]="fullName" required placeholder="Full Name"/>
-            <input type="email" name="email" [(ngModel)]="email" required placeholder="Email"/>
+            <input type="text" name="fullName" [(ngModel)]="fullName" required placeholder="Full Name" class="border-0 br-8"/>
+            <input type="email" name="email" [(ngModel)]="email" required placeholder="Email" class="border-0 br-8"/>
           </div>
           <textarea rows="2" name="message" [(ngModel)]="message" required placeholder="Type your message"></textarea>
         </form>

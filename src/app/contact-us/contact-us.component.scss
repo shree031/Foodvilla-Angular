@@ -16,8 +16,6 @@ button {
 
 
 .contact-us-container {
-  top: 77%;
-  left: 40%;
 
   p {
     font-size: 50px;
@@ -54,6 +52,9 @@ textarea {
   background-color: #EAC6AE;
   border: 1px solid #EAC6AE;
 }
-.height-80{
-  height: 84vh;
+
+.calc-height {
+  @media screen and (min-width: 1000px) {
+    height: calc(100vh - 120px);
+  }
 }

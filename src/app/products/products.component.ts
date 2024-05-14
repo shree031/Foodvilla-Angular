@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ProductRecipeService} from "../services/product-recipe.service";
 import {Product} from "../modals/product";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -14,7 +15,7 @@ export class ProductsComponent {
   isInputEmpty: boolean = true;
   isLoading: boolean = false;
 
-  constructor(private productService: ProductRecipeService) {
+  constructor(private productService: ProductRecipeService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -31,5 +32,9 @@ export class ProductsComponent {
 
   onFilteredItemsChange(filteredItems: any[]): void {
     this.filteredProducts = filteredItems;
+  }
+
+  viewProduct(product: Product) {
+    this.router.navigate(['products', product.id]);
   }
 }

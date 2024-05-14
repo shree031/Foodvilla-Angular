@@ -10,13 +10,10 @@ export class StarRatingComponent implements OnInit {
   @Output() ratingChange = new EventEmitter<number>();
 
   ngOnInit() {
-    console.log(this.rating);
   }
 
   onRatingClicked(rating: number): void {
     this.rating = rating;
-    console.log(this.rating);
-
     this.ratingChange.emit(this.rating);
   }
 }

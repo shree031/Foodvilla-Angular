@@ -1,17 +1,65 @@
-<div class="d-flex justify-content-between align-items-center my-4 custom-shadow">
+<div class="d-flex justify-content-between align-items-center my-4 custom-shadow flex-wrap">
   <div class="ms-3">
     <img class="logo" src="/assets/images/food-logo.png">
   </div>
-  <div class="links ms-3 cursor-pointer">
-    <span (click)="navigateTo('')">Home</span>
-    <span (click)="navigateTo('products')">Products</span>
-    <span (click)="navigateTo('recipes')">Recipe</span>
-    <span (click)="navigateTo('contactus')">Contact Us</span>
-    <span (click)="navigateTo('account')">Account</span>
-    <span (click)="logout()" *ngIf="isLoggedIn">Log out</span>
-    <span (click)="navigateTo('login')" *ngIf="!isLoggedIn">Sign in</span>
-    <span  *ngIf="isLoggedIn" class="position-relative"><i class="bi bi-cart fs-28"></i>
-      <span class="position-absolute bg-danger text-white fw-bold br-40 cart px-1 py-0">{{cartQuantity}}</span>
-    </span>
+  <div class="d-flex align-items-center">
+    <div class="links ms-3 d-none d-lg-flex flex-wrap">
+      <span class="cursor-pointer" (click)="navigateTo('')">Home</span>
+      <span class="cursor-pointer" (click)="navigateTo('products')">Products</span>
+      <span class="cursor-pointer" (click)="navigateTo('recipes')">Recipe</span>
+      <span class="cursor-pointer" (click)="navigateTo('contactus')">Contact Us</span>
+      <span class="cursor-pointer" (click)="navigateTo('account')">Account</span>
+      <span class="cursor-pointer" (click)="logout()" *ngIf="isLoggedIn">Log out</span>
+      <span class="cursor-pointer" (click)="navigateTo('login')" *ngIf="!isLoggedIn">Sign in</span>
+    </div>
+    <div class="links">
+      <span class="position-relative cursor-pointer" *ngIf="isLoggedIn && !router?.isActive('/cart',true)"
+            (click)="navigateTo('/cart')">
+        <i class="bi bi-cart4 fs-28"></i>
+        <span class="position-absolute bg-danger text-white fw-bold br-40 cart px-1 py-0">{{ cartQuantity }}</span>
+     </span>
+    </div>
+    <div class="d-lg-none ms-2 me-3">
+      <button class="btn btn-outline-dark px-1 py-0 fw-bolder" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasNavbar"
+              aria-controls="offcanvasNavbar">
+        <i class="bi bi-list fs-28 "></i>
+      </button>
+    </div>
   </div>
 </div>
+
+<div class="offcanvas offcanvas-end cursive w-300 default-background" tabindex="-1" id="offcanvasNavbar"
+     aria-labelledby="offcanvasNavbarLabel">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h3>
+    <button type="button" class="btn-close fs-20 br-50 close-button" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body px-0">
+    <ul class="navbar-nav justify-content-end flex-grow-1 cursor-pointer fs-20">
+      <li class="nav-item">
+        <a class="nav-link" (click)="navigateTo('')">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="navigateTo('products')">Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="navigateTo('recipes')">Recipe</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="navigateTo('contactus')">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="navigateTo('account')">Account</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a class="nav-link" (click)="logout()">Log out</a>
+      </li>
+      <li class="nav-item" *ngIf="!isLoggedIn">
+        <a class="nav-link" (click)="navigateTo('login')">Sign in</a>
+      </li>
+    </ul>
+  </div>
+</div>
+

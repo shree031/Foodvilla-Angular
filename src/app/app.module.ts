@@ -18,6 +18,8 @@ import {SearchBarComponent} from './search-bar/search-bar.component';
 import {HttpClientModule} from "@angular/common/http";
 import { LoaderComponent } from './loader/loader.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     StarRatingComponent,
     SearchBarComponent,
     LoaderComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    ProductDetailComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,35 @@
+.product-image {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+}
+
+.product-details {
+  max-width: 400px;
+}
+
+.description {
+  margin-top: 10px;
+}
+
+.rating {
+  margin-top: 10px;
+  color: gold;
+}
+
+.add-to-cart-btn {
+  margin-top: 15px;
+  padding: 5px 10px;
+  background-color: rgba(254, 129, 0, 0.87);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #fe8100;
+}
+
