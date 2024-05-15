@@ -37,4 +37,15 @@ export class ProductRecipeService {
       }, (err) => reject(err))
     });
   }
+
+  getRecipe(recipeId: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const url = `${this.baseUrl}recipes/${recipeId}`;
+      this.http.get(url).subscribe((res) => {
+        resolve(res);
+      }, (err) => {
+        reject(err)
+      })
+    });
+  }
 }

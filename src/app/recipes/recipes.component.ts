@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ProductRecipeService} from "../services/product-recipe.service";
 import {Recipe} from "../modals/recipe";
+import {NavigationService} from "../services/navigation.service";
 
 @Component({
   selector: 'app-recipes',
@@ -12,7 +13,8 @@ export class RecipesComponent {
   filteredRecipes: Recipe[] = this.recipes;
   isLoading: boolean = false;
 
-  constructor(private productService: ProductRecipeService) {
+  constructor(private productService: ProductRecipeService,
+              private navigationService: NavigationService) {
   }
 
   ngOnInit(): void {
@@ -29,5 +31,9 @@ export class RecipesComponent {
 
   onFilteredItemsChange(filteredItems: any[]): void {
     this.filteredRecipes = filteredItems;
+  }
+
+  viewRecipe(recipe: Recipe) {
+    this.navigationService.navigateForward(`recipes/${recipe.id}`);
   }
 }

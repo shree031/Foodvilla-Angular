@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductRecipeService} from "../../services/product-recipe.service";
 import {Product} from "../../modals/product";
@@ -15,12 +15,17 @@ export class ProductDetailComponent implements OnInit {
   private userId: any;
   protected isInCart: boolean = false;
   protected isError: boolean = false;
+  protected recipes: any[] | undefined;
+  protected products: any[] | undefined;
+  protected isRecipeLoading: boolean = true;
+  protected isLoading: boolean = true;
+  protected cartCount: any;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductRecipeService,
     private cartService: CartService,
-    private router:Router) {
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -29,37 +34,42 @@ export class ProductDetailComponent implements OnInit {
       this.getProductDetails(this.productId);
       this.userId = localStorage.getItem('userId');
     });
+    this.getRecommendedProducts()
   }
 
   getProductDetails(productId: string): void {
     this.productService.getProduct(productId).then(
-      (product: any) => {
+      async (product: any) => {
         this.product = product;
-        this.checkCartItems();
+        await this.checkCartItems();
       },
       (error) => {
         this.isError = true;
         console.error('Error fetching product details:', error);
       }
-    );
+    ).finally(() => this.isLoading = false);
   }
 
   addToCart(quantity: number) {
+    this.isLoading = true;
     this.cartService.addToCart(this.userId, this.productId, quantity).then(
-      (response: any) => {
+      (response) => {
         console.log('Item added to cart:', response);
-
+        this.cartCount = response;
+        this.isInCart = true;
       },
       (error: any) => {
         console.error('Error adding item to cart:', error);
       }
-    );
+    ).finally(() => {
+      this.isLoading = false;
+    });
   }
 
-  checkCartItems() {
+  async checkCartItems() {
     const userId = localStorage.getItem('userId');
     if (userId) {
-      this.cartService.getCartItems(+userId).then(
+      await this.cartService.getCartItems(+userId).then(
         (cartItems: any[]) => {
           this.isInCart = cartItems.some((item) => {
             return item.product.id == this.productId;
@@ -75,4 +85,12 @@ export class ProductDetailComponent implements OnInit {
   goToAllProducts() {
     this.router.navigate(['products'])
   }
+
+  private getRecommendedProducts() {
+    this.productService.getRecipes().then((recipes: any[]) => {
+      this.recipes = recipes;
+    }).finally(() => this.isRecipeLoading = false);
+  }
+
+
 }

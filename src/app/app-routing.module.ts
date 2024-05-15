@@ -9,13 +9,15 @@ import {RecipesComponent} from "./recipes/recipes.component";
 import {ContactUsComponent} from "./contact-us/contact-us.component";
 import {ProductDetailComponent} from "./products/product-detail/product-detail.component";
 import {CartComponent} from "./cart/cart.component";
+import {RecipeDetailComponent} from "./recipes/recipe-detail/recipe-detail.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'products/:id', component: ProductDetailComponent},
   {path: 'recipes', component: RecipesComponent},
-  { path: 'contactus', component: ContactUsComponent },
+  {path: 'recipes/:id', component: RecipeDetailComponent},
+  {path: 'contactus', component: ContactUsComponent},
   // { path: 'feedback', component: FeedbackComponent },
   {path: 'account', component: AccountComponent},
   {path: 'signup', component: SignupComponent},

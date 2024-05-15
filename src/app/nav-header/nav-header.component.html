@@ -16,7 +16,8 @@
       <span class="position-relative cursor-pointer" *ngIf="isLoggedIn && !router?.isActive('/cart',true)"
             (click)="navigateTo('/cart')">
         <i class="bi bi-cart4 fs-28"></i>
-        <span class="position-absolute bg-danger text-white fw-bold br-40 cart px-1 py-0">{{ cartQuantity }}</span>
+        <span
+          class="position-absolute bg-danger text-white fw-bold br-40 cart px-1 py-0">{{ cartCount ?? cartQuantity }}</span>
      </span>
     </div>
     <div class="d-lg-none ms-2 me-3">

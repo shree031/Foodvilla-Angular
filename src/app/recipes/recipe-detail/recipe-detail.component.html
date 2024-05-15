@@ -1,0 +1,46 @@
+<div class="default-background">
+  <header>
+    <app-nav-header></app-nav-header>
+  </header>
+  <ng-container *ngIf="isLoading">
+    <app-loader></app-loader>
+  </ng-container>
+  <ng-container *ngIf="!isLoading">
+    <div *ngIf="isError" class="cursive fw-600 fs-22 center position-absolute no-product d-flex flex-column">
+      <h2>Recipe not available<i class="bi bi-basket2-fill fs-28 ps-2"></i></h2>
+      <h3 class="fs-20 text-decoration-underline mt-3 cursor-pointer" (click)="goToAllRecipes()">
+        Browse other Recipes
+      </h3>
+    </div>
+    <div *ngIf="!isError" class="d-flex flex-column flex-lg-row justify-content-lg-evenly">
+      <div class="d-flex flex-column justify-content-lg-evenly align-items-center m-5 mt-3">
+        <div>
+          <video controls poster="{{recipe.thumbnailImageUrl}}">
+            <source src="{{recipe.videoUrl}}" type="video/mp4">
+          </video>
+        </div>
+        <div class="d-flex justify-content-center flex-column">
+          <span class="d-flex justify-content-between align-items-center"><h1 class="fw-bold">{{ recipe.name }}</h1>
+            <p class="px-2 likes d-flex align-items-center">
+              <i class="bi bi-heart-fill text-danger fs-28 pe-2"></i>
+              <span class="fs-22 fw-bold">{{ recipe.likes }}</span>
+            </p>
+          </span>
+          <p>{{ recipe.description }}</p>
+        </div>
+      </div>
+      <div
+        class="text-center m-2 mx-4 br-40 w-lg-100 block-shadow">
+        <h2 class="cursive pt-4">Recommended Products</h2>
+        <div class="overflow-auto height-without-nav d-flex flex-lg-column align-items-center custom-scrollbar">
+          <p *ngIf="isProductLoading">
+            Loading Products .....
+          </p>
+          <div *ngFor="let product of products" class="m-3 br-8">
+            <app-product-widget [product]="product"></app-product-widget>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

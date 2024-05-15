@@ -20,6 +20,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
+import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CartComponent } from './cart/cart.component';
     LoaderComponent,
     ContactUsComponent,
     ProductDetailComponent,
-    CartComponent
+    CartComponent,
+    RecipeDetailComponent
   ],
   imports: [
     BrowserModule,

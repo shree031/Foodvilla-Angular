@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {CartService} from "../services/cart.service";
 import {NavigationService} from "../services/navigation.service";
@@ -9,6 +9,8 @@ import {NavigationService} from "../services/navigation.service";
   styleUrls: ['./nav-header.component.scss']
 })
 export class NavHeaderComponent implements OnInit {
+
+  @Input() cartCount = undefined;
   protected isLoggedIn: boolean = false;
   protected cartQuantity: number = 0;
   private userId: any;
@@ -19,7 +21,7 @@ export class NavHeaderComponent implements OnInit {
               private navigationService: NavigationService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     let userDetails;
     if (!localStorage.getItem('userDetails')) {
       return;
@@ -31,7 +33,7 @@ export class NavHeaderComponent implements OnInit {
     if (localStorage.getItem('cart-quantity')) {
       this.cartQuantity = +JSON.parse(localStorage.getItem('cart-quantity') || '');
     } else {
-      this.cartService.setCartCount(this.userId);
+      this.cartQuantity = await this.cartService.setCartCount(this.userId);
     }
   }
 

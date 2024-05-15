@@ -15,7 +15,7 @@
       <h2>No Recipes available<i class="bi bi-basket2-fill fs-28 ps-2"></i></h2>
     </div>
     <div *ngFor="let recipe of filteredRecipes" class="m-3 br-8">
-      <app-recipe-widget [recipe]="recipe" ></app-recipe-widget>
+      <app-recipe-widget [recipe]="recipe" (click)="viewRecipe(recipe)"></app-recipe-widget>
     </div>
   </div>
 </div>

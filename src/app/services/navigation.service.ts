@@ -12,7 +12,7 @@ export class NavigationService implements OnInit {
   ngOnInit() {
   }
 
-  navigateForward(url: string, navOptions: any) {
+  navigateForward(url: string, navOptions?: any) {
     this.router.navigateByUrl(url, navOptions);
   }
 }
