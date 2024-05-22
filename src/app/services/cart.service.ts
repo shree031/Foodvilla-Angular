@@ -43,4 +43,17 @@ export class CartService {
   public async setCartCount(userId: number): Promise<number> {
     return await this.getCartItemCount(userId)
   }
+
+  removeItem(userId: number, productId: number) {
+    return new Promise((resolve, reject) => {
+      this.http.delete<any[]>(
+        `${this.baseUrl}cart/${userId}/remove/${productId}`).subscribe(
+        (res: any[]) => {
+          resolve(res);
+        },
+        (error) => {
+          reject(error);
+        });
+    })
+  }
 }

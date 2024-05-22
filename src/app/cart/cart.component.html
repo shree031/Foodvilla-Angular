@@ -2,7 +2,16 @@
   <header>
     <app-nav-header></app-nav-header>
   </header>
-  <div *ngFor="let item of cartItems">
-    <app-product-widget [product]="item?.product"></app-product-widget>
+  <ng-container>
+    <app-loader *ngIf="isLoading"></app-loader>
+  </ng-container>
+  <div class="cursive text-center my-2">
+    <h1>Items in your cart</h1>
+  </div>
+  <div *ngIf="!isLoading" class="d-flex m-1 flex-wrap justify-content-evenly mt-4">
+    <div *ngFor="let item of cartItems" class="m-2">
+      <app-product-widget [product]="item?.product" [isCart]="true"
+                          (remove)="removeFromCart(item?.product)"></app-product-widget>
+    </div>
   </div>
 </div>

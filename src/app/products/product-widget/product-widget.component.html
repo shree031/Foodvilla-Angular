@@ -6,11 +6,17 @@
       <p class="description">{{product.description}}</p>
     </div>
   </div>
-  <div class="mb-3">
-    <div class="">
-      <hr>
+  <hr>
+  <div class="mb-3 d-flex justify-content-between align-items-end pb-2">
+    <div class="d-flex flex-column">
       <span class="p-2">Rs. {{product.price}}/-</span>
       <app-star-rating [(rating)]="product.rating"></app-star-rating>
+    </div>
+    <div class="pe-2" *ngIf="isCart" (click)="removeItem()">
+      <button class="text-white fs-22 br-8 px-2 theme-color-2 border-0 ">
+        <i class="bi bi-x-circle-fill fs-22 pe-2"></i>
+        Remove
+      </button>
     </div>
   </div>
 </div>

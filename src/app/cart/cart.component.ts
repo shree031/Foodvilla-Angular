@@ -10,20 +10,36 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class CartComponent implements OnInit {
   private navState: any;
   protected cartItems: any;
+  protected isLoading: boolean = true;
+  private readonly userId: number;
 
   constructor(private cartService: CartService,
               private router: Router,
               private actRoute: ActivatedRoute) {
     this.navState = this.router.getCurrentNavigation()?.extras.state;
+    this.userId = this.navState?.userId;
   }
 
-  ngOnInit(): void {
-    this.getCartItems(this.navState?.userId);
+  async ngOnInit(): Promise<void> {
+    this.isLoading = true;
+    await this.getCartItems();
+    this.isLoading = false
   }
 
-  private getCartItems(userId: any) {
-    this.cartService.getCartItems(userId).then((res) => {
+  private async getCartItems() {
+    await this.cartService.getCartItems(+this.userId).then((res) => {
       this.cartItems = res;
     }, err => console.log(err));
+  }
+
+  removeFromCart(product: any) {
+    this.isLoading = true;
+    this.cartService.removeItem(+this.userId, product.id).then(async (res) => {
+      await this.getCartItems();
+    }, () => {
+      console.log("Ooops! something went wrong");
+    }).finally(() => {
+      this.isLoading = false;
+    });
   }
 }

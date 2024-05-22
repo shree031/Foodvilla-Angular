@@ -13,20 +13,21 @@
       </h3>
     </div>
     <div *ngIf="!isError" class="d-flex flex-column flex-lg-row justify-content-lg-evenly">
-      <div class="d-flex flex-column justify-content-lg-evenly align-items-center m-5 mt-3">
+      <div class="d-flex flex-column justify-content-lg-center align-items-start m-5 mt-3">
         <div>
-          <video controls poster="{{recipe.thumbnailImageUrl}}">
-            <source src="{{recipe.videoUrl}}" type="video/mp4">
+          <video controls poster="{{recipe?.thumbnailImageUrl}}">
+            <source src="{{recipe?.videoUrl}}" type="video/mp4">
           </video>
         </div>
-        <div class="d-flex justify-content-center flex-column">
-          <span class="d-flex justify-content-between align-items-center"><h1 class="fw-bold">{{ recipe.name }}</h1>
-            <p class="px-2 likes d-flex align-items-center">
+        <div class="d-flex justify-content-center flex-column w-90 mt-2">
+          <span class="d-flex justify-content-between align-items-center">
+            <h1 class="fw-bold">{{ recipe.name }}</h1>
+            <p class="px-2 likes d-flex align-items-center  text-justify">
               <i class="bi bi-heart-fill text-danger fs-28 pe-2"></i>
-              <span class="fs-22 fw-bold">{{ recipe.likes }}</span>
+              <span class="fs-22 fw-bold mb-0">{{ recipe.likes }}</span>
             </p>
           </span>
-          <p>{{ recipe.description }}</p>
+          <p class="pe-5 text-justify">{{ recipe.description }}</p>
         </div>
       </div>
       <div
