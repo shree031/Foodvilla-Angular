@@ -10,12 +10,6 @@
   color: #ebc7af;
 }
 
-.box {
-  @extend .transparent-box;
-  width: 340px;
-  height: 450px;
-}
-
 .login-box h1 {
   float: none;
   font-size: 40px;

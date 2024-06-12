@@ -31,7 +31,7 @@
         <div class="overflow-auto height-without-nav d-flex flex-lg-column align-items-center custom-scrollbar ">
           <p *ngIf="isRecipeLoading">Loading Recipes .....</p>
           <div *ngFor="let recipe of recipes" class="m-3 br-8">
-            <app-recipe-widget [recipe]="recipe"></app-recipe-widget>
+            <app-recipe-widget [recipe]="recipe"(click)="viewRecipe(recipe)"></app-recipe-widget>
           </div>
         </div>
       </div>

@@ -31,7 +31,8 @@ export class CartService {
 
   getCartItems(userId: number): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get<any[]>(`${this.baseUrl}cart/${userId}`).subscribe((res: any[]) => {
+      this.http.get<any[]>(`${this.baseUrl}cart/${userId}`).subscribe(async (res: any[]) => {
+        await this.setCartCount(userId, res.length);
         resolve(res);
       }, error => {
         reject(error);
@@ -40,7 +41,11 @@ export class CartService {
 
   }
 
-  public async setCartCount(userId: number): Promise<number> {
+  public async setCartCount(userId: number, count?: number): Promise<number> {
+    if (count) {
+      localStorage.setItem('cart-quantity', String(count));
+      return count;
+    }
     return await this.getCartItemCount(userId)
   }
 

@@ -9,9 +9,14 @@
     <h1>Items in your cart</h1>
   </div>
   <div *ngIf="!isLoading" class="d-flex m-1 flex-wrap justify-content-evenly mt-4">
+    <div *ngIf="!cartItems.length"
+         class="cursive fw-600 fs-22 center position-absolute no-product d-flex flex-column">
+      <h2 class="text-muted">Your cart is empty<i class="bi bi-basket2-fill fs-28 ps-2"></i></h2>
+    </div>
     <div *ngFor="let item of cartItems" class="m-2">
       <app-product-widget [product]="item?.product" [isCart]="true"
-                          (remove)="removeFromCart(item?.product)"></app-product-widget>
+                          (remove)="removeFromCart(item?.product)"
+                          (click)="viewProduct(item?.product)"></app-product-widget>
     </div>
   </div>
 </div>

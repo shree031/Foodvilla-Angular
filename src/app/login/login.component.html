@@ -24,9 +24,9 @@
         </div>
         <!-- User type dropdown -->
         <div class="text-box">
-          <select name="userType" class="select-style" ngModel>
-            <option value="admin">Admin</option>
+          <select name="userType" class="select-style"  [(ngModel)]="userType">
             <option value="user" selected>User</option>
+            <option value="admin">Admin</option>
             <option value="distributor">Distributor</option>
           </select>
         </div>

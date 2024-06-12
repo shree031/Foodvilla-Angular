@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {Recipe} from "../../modals/recipe";
 
 @Component({
   selector: 'app-recipe-widget',

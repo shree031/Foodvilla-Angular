@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {CartService} from "../services/cart.service";
 import {NavigationService} from "../services/navigation.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-nav-header',
@@ -14,22 +15,28 @@ export class NavHeaderComponent implements OnInit {
   protected isLoggedIn: boolean = false;
   protected cartQuantity: number = 0;
   private userId: any;
+  protected userType: 'admin' | 'distributor' | 'user' = "user";
 
 
   constructor(protected router: Router,
               private cartService: CartService,
-              private navigationService: NavigationService) {
+              private navigationService: NavigationService,
+              private toastr: ToastrService) {
   }
 
   async ngOnInit() {
     let userDetails;
-    if (!localStorage.getItem('userDetails')) {
+    userDetails = JSON.parse(localStorage.getItem('userDetails') || '');
+    if (!userDetails) {
       return;
     }
-    userDetails = JSON.parse(localStorage.getItem('userDetails') || '');
-    this.userId = userDetails.id;
-    localStorage.setItem('userId', this.userId);
     this.isLoggedIn = true;
+    this.userId = userDetails.id;
+    this.userType = userDetails.userType;
+    localStorage.setItem('userId', this.userId);
+    if (this.userType !== 'user') {
+      return;
+    }
     if (localStorage.getItem('cart-quantity')) {
       this.cartQuantity = +JSON.parse(localStorage.getItem('cart-quantity') || '');
     } else {
@@ -38,17 +45,23 @@ export class NavHeaderComponent implements OnInit {
   }
 
   navigateTo(str: string) {
-    void this.navigationService.navigateForward(`/${str}`, {
-      state: {
+    let state;
+    if (str !== 'login') {
+      state = {
         userId: this.userId
       }
+    }
+    void this.navigationService.navigateForward(`/${str}`, {
+      state
     });
   }
 
   logout(): void {
-    localStorage.removeItem('userDetails');
+    localStorage.clear();
+    localStorage.setItem('isLoggedIn', 'false');
     this.isLoggedIn = false;
     this.navigateTo('');
+    this.toastr.show("You logged out successfully");
   }
 
 }

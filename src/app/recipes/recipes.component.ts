@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ProductRecipeService} from "../services/product-recipe.service";
-import {Recipe} from "../modals/recipe";
 import {NavigationService} from "../services/navigation.service";
+import {Recipe} from "../modals/modal_def";
 
 @Component({
   selector: 'app-recipes',

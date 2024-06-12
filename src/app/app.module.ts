@@ -12,15 +12,19 @@ import {ProductWidgetComponent} from './products/product-widget/product-widget.c
 import {RecipesComponent} from './recipes/recipes.component';
 import {RecipeWidgetComponent} from './recipes/recipe-widget/recipe-widget.component';
 import {AccountComponent} from './account/account.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StarRatingComponent} from './star-rating/star-rating.component';
 import {SearchBarComponent} from './search-bar/search-bar.component';
 import {HttpClientModule} from "@angular/common/http";
-import { LoaderComponent } from './loader/loader.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { ProductDetailComponent } from './products/product-detail/product-detail.component';
-import { CartComponent } from './cart/cart.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
+import {LoaderComponent} from './loader/loader.component';
+import {ContactUsComponent} from './contact-us/contact-us.component';
+import {ProductDetailComponent} from './products/product-detail/product-detail.component';
+import {CartComponent} from './cart/cart.component';
+import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
+import { DistributorHomeComponent } from './distributor-home/distributor-home.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component';
 
 @NgModule({
   declarations: [
@@ -40,14 +44,22 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
     ContactUsComponent,
     ProductDetailComponent,
     CartComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    DistributorHomeComponent,
+    ManageProductsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot({
+            positionClass: 'toast-bottom-right',
+            toastClass: "ngx-toastr custom-toast"
+        }),
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

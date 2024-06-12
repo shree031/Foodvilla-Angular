@@ -15,7 +15,8 @@
                  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
           <div
             *ngIf="registrationForm.controls['password']?.touched && (registrationForm.controls['password'].errors?.['required'] || registrationForm.controls['password'].errors?.['pattern'])"
-            class="text-danger error">Password must be at least 8 characters long and contain at least one letter and one
+            class="text-danger error">Password must be at least 8 characters long and contain at least one letter and
+            one
             number
           </div>
         </div>
@@ -37,7 +38,14 @@
             class="text-danger error">Email ID is required
           </div>
         </div>
-        <select name="userType" class="select-style" ngModel>
+        <div class="text-box">
+          <input type="text" name="address" placeholder="Enter Address" required ngModel>
+          <div
+            *ngIf="registrationForm.controls['address']?.touched && registrationForm.controls['address'].errors?.['required']"
+            class="text-danger error">Address is required
+          </div>
+        </div>
+        <select name="userType" class="select-style" [(ngModel)]="userType">
           <option value="user">User</option>
           <option value="distributor">Distributor</option>
         </select>

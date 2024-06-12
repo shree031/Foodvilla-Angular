@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ProductRecipeService} from "../services/product-recipe.service";
-import {Product} from "../modals/product";
 import {Router} from "@angular/router";
+import {Product} from "../modals/modal_def";
 
 @Component({
   selector: 'app-products',
@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class ProductsComponent {
   products: Product[] = [];
-  filteredProducts: any[] = [];
+  filteredProducts: Product[] = [];
   searchTerm: string = '';
   isInputEmpty: boolean = true;
   isLoading: boolean = false;

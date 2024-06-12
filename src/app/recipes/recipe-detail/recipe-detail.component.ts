@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ProductRecipeService} from "../../services/product-recipe.service";
 import {CartService} from "../../services/cart.service";
 import {NavigationService} from "../../services/navigation.service";
+import {Product} from "../../modals/modal_def";
 
 @Component({
   selector: 'app-recipe-detail',
@@ -50,5 +51,9 @@ constructor(
     this.recipeService.getProducts().then((products: any[]) => {
       this.products = products;
     }).finally(() => this.isProductLoading = false);
+  }
+
+  viewProduct(product: Product) {
+    this.router.navigate(['products', product.id]);
   }
 }

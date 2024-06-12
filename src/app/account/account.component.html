@@ -2,36 +2,31 @@
   <header>
     <app-nav-header></app-nav-header>
   </header>
-  <div class="center">
-    <div class="box p-3">
-      <h1 class="cursive text-center w-100">Edit Account</h1>
-      <form class="mx-0" (ngSubmit)="submitForm()" #editForm="ngForm">
-        <div class="d-flex flex-column justify-content-center align-items-center w-600">
-          <div class="text-box">
-            <label>UserName: </label>
-            <input type="text" name="username" [(ngModel)]="formData.username">
-          </div>
-          <div class="text-box">
-            <label>Password: </label>
-            <input type="text" name="password" [(ngModel)]="formData.password">
-          </div>
-          <div class="text-box">
-            <label>Phone: </label>
-            <input type="text" name="phone" [(ngModel)]="formData.phone">
-          </div>
-          <div class="text-box">
-            <label>Email ID: </label>
-            <input type="text" name="email" [(ngModel)]="formData.email">
-          </div>
-          <div class="text-box">
-            <label>Address: </label>
-            <textarea rows="1" name="address" [(ngModel)]="formData.address"></textarea>
-          </div>
-          <button type="submit" class="fw-bold w-100 p-2 fs-18 br-8 default-background">Submit</button>
-        </div>
-      </form>
+  <div class="p-3">
+    <h1 class="cursive text-center w-100">Edit Account Details</h1>
+  </div>
+  <div class="d-flex justify-content-center position-relative height-without-nav w-100 flex-wrap">
+    <div class="br-50 center flex-column theme-color-2 shadow-lg fit-content p-4 circle m-4 slide-in-left">
+      <span class="text-muted text-center">
+        <i class="bi bi-person-circle fs-40"></i>
+        <h3>Username</h3>
+      </span>
+      <h3>{{userDetails.username}}</h3>
+    </div>
+    <div
+      class="br-50 center flex-column theme-color-2 shadow-lg fit-content p-4 circle text-center m-4 position-relative top-50 slide-in-top">
+      <span class="text-muted">
+        <i class="bi bi-envelope-at-fill fs-40"></i>
+        <h3>Email</h3>
+      </span>
+      <h3 class="text-break">{{userDetails.email}}</h3>
+    </div>
+    <div class="br-50 center flex-column theme-color-2 shadow-lg fit-content p-4 circle m-4 slide-in-right ">
+      <span class="text-muted text-center">
+        <i class="bi bi-geo-alt fs-40"></i>
+        <h3>Address</h3>
+      </span>
+      <h3 class="text-break text-center">{{userDetails.address}}</h3>
     </div>
   </div>
-
-
 </div>

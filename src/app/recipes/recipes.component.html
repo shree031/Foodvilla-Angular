@@ -12,7 +12,7 @@
   <div class="center flex-wrap mt-4"  *ngIf="!isLoading">
     <div *ngIf="filteredRecipes.length===0"
          class="cursive fw-600 fs-22 center position-absolute no-product d-flex flex-column">
-      <h2>No Recipes available<i class="bi bi-basket2-fill fs-28 ps-2"></i></h2>
+      <h2 class="text-muted">No Recipes available<i class="bi bi-basket2-fill fs-28 ps-2"></i></h2>
     </div>
     <div *ngFor="let recipe of filteredRecipes" class="m-3 br-8 cursor-pointer">
       <app-recipe-widget [recipe]="recipe" (click)="viewRecipe(recipe)"></app-recipe-widget>

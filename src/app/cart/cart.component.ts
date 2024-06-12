@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CartService} from "../services/cart.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
+import {Product} from "../modals/modal_def";
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +17,8 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService,
               private router: Router,
-              private actRoute: ActivatedRoute) {
+              private actRoute: ActivatedRoute,
+              private toastrService:ToastrService) {
     this.navState = this.router.getCurrentNavigation()?.extras.state;
     this.userId = this.navState?.userId;
   }
@@ -36,10 +39,15 @@ export class CartComponent implements OnInit {
     this.isLoading = true;
     this.cartService.removeItem(+this.userId, product.id).then(async (res) => {
       await this.getCartItems();
+      this.toastrService.show("Product removed from cart");
     }, () => {
-      console.log("Ooops! something went wrong");
+      this.toastrService.error("Ooops! something went wrong");
     }).finally(() => {
       this.isLoading = false;
     });
+  }
+
+  viewProduct(product: Product) {
+    this.router.navigate(['products', product.id]);
   }
 }

@@ -38,7 +38,7 @@
             Loading Products .....
           </p>
           <div *ngFor="let product of products" class="m-3 br-8">
-            <app-product-widget [product]="product"></app-product-widget>
+            <app-product-widget [product]="product" (click)="viewProduct(product)"></app-product-widget>
           </div>
         </div>
       </div>

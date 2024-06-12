@@ -1,0 +1,42 @@
+.tabs {
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid #000;
+  margin: 15px;
+  display: flex;
+  cursor: pointer;
+}
+
+.selected {
+  border: 3px solid #fe8100 !important;
+  color: #fe8100;
+}
+
+.height-width {
+  height: 100px;
+  width: 150px;
+  max-width: 150px;
+  min-width: 150px;
+}
+
+.add-product-container {
+  background-color: #fe810030;
+  color: black;
+  border: 1px solid black;
+}
+
+input, textarea, select {
+  background: none;
+  border: 1px solid black;
+}
+
+.border-bottom-dashed {
+  border-bottom: 2px dashed black;
+}
+
+button {
+  border-radius: 8px;
+  color: white;
+  padding: 10px;
+  border: none;
+}

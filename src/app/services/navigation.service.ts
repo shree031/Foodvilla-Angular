@@ -15,4 +15,8 @@ export class NavigationService implements OnInit {
   navigateForward(url: string, navOptions?: any) {
     this.router.navigateByUrl(url, navOptions);
   }
+
+  navigateRoot() {
+    this.router.navigateByUrl('/');
+  }
 }

@@ -1,8 +1,10 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductRecipeService} from "../../services/product-recipe.service";
-import {Product} from "../../modals/product";
 import {CartService} from "../../services/cart.service";
+import {NavigationService} from "../../services/navigation.service";
+import {ToastrService} from "ngx-toastr";
+import {Product, Recipe} from "../../modals/modal_def";
 
 @Component({
   selector: 'app-product-detail',
@@ -25,7 +27,9 @@ export class ProductDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductRecipeService,
     private cartService: CartService,
-    private router: Router) {
+    private router: Router,
+    private navigationService: NavigationService,
+    private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -45,7 +49,7 @@ export class ProductDetailComponent implements OnInit {
       },
       (error) => {
         this.isError = true;
-        console.error('Error fetching product details:', error);
+        this.toastrService.error(`Error fetching product details:${error}`, 'Error');
       }
     ).finally(() => this.isLoading = false);
   }
@@ -54,12 +58,12 @@ export class ProductDetailComponent implements OnInit {
     this.isLoading = true;
     this.cartService.addToCart(this.userId, this.productId, quantity).then(
       (response) => {
-        console.log('Item added to cart:', response);
+        this.toastrService.show('Item added to cart');
         this.cartCount = response;
         this.isInCart = true;
       },
       (error: any) => {
-        console.error('Error adding item to cart:', error);
+        this.toastrService.error(`Error adding item to cart:${error}`, 'Error');
       }
     ).finally(() => {
       this.isLoading = false;
@@ -72,11 +76,11 @@ export class ProductDetailComponent implements OnInit {
       await this.cartService.getCartItems(+userId).then(
         (cartItems: any[]) => {
           this.isInCart = cartItems.some((item) => {
-            return item.product.id == this.productId;
+            return item.product.id === +this.productId;
           });
         },
         (error: any) => {
-          console.error('Error fetching cart items:', error);
+          this.toastrService.error(`Error fetching cart items:${error}`, 'Error');
         }
       );
     }
@@ -93,4 +97,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
 
+  viewRecipe(recipe: Recipe) {
+    this.navigationService.navigateForward(`recipes/${recipe.id}`);
+  }
 }

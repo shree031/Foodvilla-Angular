@@ -5,19 +5,25 @@
   <div class="d-flex align-items-center">
     <div class="links ms-3 d-none d-lg-flex flex-wrap">
       <span class="cursor-pointer" (click)="navigateTo('')">Home</span>
-      <span class="cursor-pointer" (click)="navigateTo('products')">Products</span>
-      <span class="cursor-pointer" (click)="navigateTo('recipes')">Recipe</span>
+      <ng-container *ngIf="userType === 'user'">
+        <span class="cursor-pointer" (click)="navigateTo('products')">Products</span>
+        <span class="cursor-pointer" (click)="navigateTo('recipes')">Recipe</span>
+      </ng-container>
+      <ng-container *ngIf="userType === 'distributor'">
+        <span class="cursor-pointer" (click)="navigateTo('manageProducts')">Manage products</span>
+      </ng-container>
       <span class="cursor-pointer" (click)="navigateTo('contactus')">Contact Us</span>
-      <span class="cursor-pointer" (click)="navigateTo('account')">Account</span>
+      <span class="cursor-pointer" (click)="navigateTo('account')" *ngIf="isLoggedIn">Account</span>
       <span class="cursor-pointer" (click)="logout()" *ngIf="isLoggedIn">Log out</span>
       <span class="cursor-pointer" (click)="navigateTo('login')" *ngIf="!isLoggedIn">Sign in</span>
     </div>
-    <div class="links">
+    <div class="links" *ngIf="userType === 'user'">
       <span class="position-relative cursor-pointer" *ngIf="isLoggedIn && !router?.isActive('/cart',true)"
             (click)="navigateTo('/cart')">
         <i class="bi bi-cart4 fs-28"></i>
-        <span
-          class="position-absolute bg-danger text-white fw-bold br-40 cart px-1 py-0">{{ cartCount ?? cartQuantity }}</span>
+        <span class="position-absolute bg-danger text-white fw-bold br-40 cart px-1 py-0">
+          {{ cartCount ?? cartQuantity }}
+        </span>
      </span>
     </div>
     <div class="d-lg-none ms-2 me-3">
@@ -42,12 +48,14 @@
       <li class="nav-item">
         <a class="nav-link" (click)="navigateTo('')">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="navigateTo('products')">Products</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="navigateTo('recipes')">Recipe</a>
-      </li>
+      <ng-container *ngIf="userType === 'user'">
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateTo('products')">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateTo('recipes')">Recipe</a>
+        </li>
+      </ng-container>
       <li class="nav-item">
         <a class="nav-link" (click)="navigateTo('contactus')">Contact Us</a>
       </li>
