@@ -85,4 +85,24 @@ export class ProductRecipeService {
       }, (err) => reject(err))
     })
   }
+
+  markOutOfStock(productId: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(`${this.baseUrl}products/${productId}/outOfStock`, {}).subscribe((res) => {
+        resolve(null)
+      }, (err) => {
+        reject(err);
+      })
+    });
+  }
+
+  markAvailable(productId: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(`${this.baseUrl}products/${productId}/available`, {}).subscribe((res) => {
+        resolve(null)
+      }, (err) => {
+        reject(err);
+      })
+    });
+  }
 }

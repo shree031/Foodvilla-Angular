@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProductRecipeService} from "../services/product-recipe.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
+import {Product} from "../modals/modal_def";
 
 @Component({
   selector: 'app-manage-products',
@@ -9,7 +10,7 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./manage-products.component.scss']
 })
 export class ManageProductsComponent implements OnInit {
-  products: any;
+  products: Product[] = [];
   isLoading: any;
   categories: any = [
     {name: 'All', count: 0},
@@ -17,11 +18,11 @@ export class ManageProductsComponent implements OnInit {
     {name: 'Vegetables', count: 0},
     {name: 'Ingredients', count: 0}
   ];
-  selectedTab: 'All' | 'Fruits' | 'Vegetables' | 'Ingredients' = 'All';
+  selectedTab: 'All' | Product['type'] = 'All';
   private userId: number = 0;
-  public filteredProducts: any;
+  public filteredProducts: Product[] = [];
   productForm!: FormGroup;
-  userType = 'vegetables';
+  userType: string = 'Vegetables';
   showContainer: boolean = false;
   selectedFile: File | null = null;
   isEditMode: boolean = false;
@@ -48,12 +49,13 @@ export class ManageProductsComponent implements OnInit {
   }
 
   changeTab(category: any) {
+    this.selectedTab = category.name;
     if (category.name === 'All') {
       this.filteredProducts = this.products;
       category.count = this.filteredProducts.length;
       return;
     }
-    this.filteredProducts = this.products.filter((product: { type: string; }) => {
+    this.filteredProducts = this.products.filter((product: Product) => {
       return product.type === category.name
     });
     category.count = this.filteredProducts.length;
@@ -106,6 +108,7 @@ export class ManageProductsComponent implements OnInit {
     this.isEditMode = true;
     this.currentProductId = product.id;
     this.productForm.patchValue(product);
+    this.userType = product.type;
     this.isImageRemoved = false;
     setTimeout(() => {
       this.targetDiv.nativeElement.scrollIntoView({behavior: 'smooth'});
@@ -138,8 +141,27 @@ export class ManageProductsComponent implements OnInit {
   }
 
   deleteProduct() {
-    this.productRecipeService.deleteProduct(this.userId).then((res: any[]) => {
+    console.log("yes pe click kiya: this.currentProductId", this.currentProductId)
+    this.productRecipeService.deleteProduct(Number(this.currentProductId)).then(async (res: any[]) => {
+      this.toastrService.show("Product deleted successfully");
+      await this.getProducts();
 
     }).finally(() => this.isLoading = false);
   }
+
+  markOutOfStock(product: any) {
+    this.productRecipeService.markOutOfStock(Number(product.id)).then(async (res: any[]) => {
+      this.toastrService.show("Product marked as out of stock");
+      await this.getProducts();
+
+    }).finally(() => this.isLoading = false);
+  }
+
+  markAvailable(product: any) {
+    this.productRecipeService.markAvailable(Number(product.id)).then(async (res: any[]) => {
+      this.toastrService.show("Product marked as available");
+      await this.getProducts();
+    }).finally(() => this.isLoading = false);
+  }
+
 }

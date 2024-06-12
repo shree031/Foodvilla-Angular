@@ -5,6 +5,8 @@ export interface Product {
   description: string;
   price: number;
   rating: number;
+  status: string;
+  type: 'Vegetables' | 'Fruits' | 'Ingredients';
 }
 
 export interface Recipe {

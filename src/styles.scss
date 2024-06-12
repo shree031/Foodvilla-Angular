@@ -3,6 +3,7 @@
 //Theme-colors(Default)
 $default-bg-color: #f6e6db;
 $foreground-color: #fe8100;
+$secondary-color: #ebc7af;
 
 //Theme
 html, body {
@@ -14,7 +15,7 @@ html, body {
 }
 
 .theme-color-2 {
-  background-color: #fe8100;
+  background-color: $foreground-color;
 }
 
 // font-family
@@ -47,6 +48,10 @@ html, body {
   font-size: 60px;
 }
 
+.fs-40 {
+  font-size: 40px;
+}
+
 //text
 
 .text-justify {
@@ -54,8 +59,20 @@ html, body {
 }
 
 //width
+.w-30 {
+  width: 30%;
+}
+
 .w-40 {
   width: 40%;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-70 {
+  width: 70%;
 }
 
 .w-80 {
@@ -66,9 +83,6 @@ html, body {
   width: 90%;
 }
 
-.w-30 {
-  width: 30%;
-}
 
 .w-300 {
   width: 300px !important;
@@ -78,6 +92,20 @@ html, body {
   @media screen and (min-width: 1000px) {
     width: 100%;
   }
+}
+
+.responsive-width {
+  width: 50% !important; /* For screens larger than 768px */
+}
+
+@media (max-width: 768px) {
+  .responsive-width {
+    width: 100% !important; /* For screens larger than 768px */
+  }
+}
+
+.fit-content {
+  width: fit-content;
 }
 
 //height
@@ -108,6 +136,37 @@ html, body {
   border-radius: 8px;
 }
 
+.bg-none {
+  background: none;
+}
+
+// Toastr class overriding
+.custom-toast {
+  border-radius: 30px !important;
+  font-size: 24px !important;
+  text-align: center;
+  background-color: $foreground-color !important;
+  padding: 15px 20px !important;
+  width: 100% !important;
+}
+
+// Custom scrollbar style
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 90%;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px $secondary-color;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #fe81003d;
+  border-radius: 10px;
+}
+
+// Custom classes
 .center {
   display: flex;
   justify-content: center;
@@ -119,17 +178,16 @@ html, body {
 }
 
 .select-style {
-  color: #ebc7af;
+  color: $secondary-color;
   width: 100%;
   padding: 7px 5px;
-  margin: 4px;
   box-sizing: border-box;
   border-radius: 8px;
   background-color: #180c09;
   font-weight: bold;
   text-align: center;
   border-bottom: none;
-  margin-left: 0px;
+  margin: 4px 4px 4px 0;
 }
 
 
@@ -139,14 +197,14 @@ html, body {
   font-size: 20px;
   padding: 8px 0;
   margin: 8px 0;
-  border-bottom: 1px solid #ebc7af;
+  border-bottom: 1px solid $secondary-color;
 }
 
 .text-box input, textarea {
   border: none;
   outline: none;
   background: none;
-  color: #ebc7af;
+  color: $secondary-color;
   font-size: 20px;
   width: 80%;
   float: left;
@@ -155,13 +213,13 @@ html, body {
 
 .text-box button {
   width: 100%;
-  background: 2px solid #ebc7af;
-  color: #ebc7af;
+  background: 2px solid $secondary-color;
+  color: $secondary-color;
   padding: 5px;
   font-size: 18px;
   cursor: pointer;
   margin: 12px 0;
-  border: 2px solid #ebc7af;
+  border: 2px solid $secondary-color;
 }
 
 .transparent-box {
@@ -197,22 +255,14 @@ html, body {
 }
 
 
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
-  height: 90%;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px #ebc7af;
-  border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #fe81003d;
-  border-radius: 10px;
-}
-
 .block-shadow {
   box-shadow: 0px 10px 40px 38px inset #fe81003d;
   border-radius: 50px;
 }
+
+.box {
+  @extend .transparent-box;
+  width: 360px;
+  padding: 40px;
+}
+
