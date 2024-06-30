@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {CartService} from "../services/cart.service";
-import {NavigationService} from "../services/navigation.service";
+import {CartService} from "../../services/cart.service";
+import {NavigationService} from "../../services/navigation.service";
 import {ToastrService} from "ngx-toastr";
+import {UserType} from "../../modals/enum";
 
 @Component({
   selector: 'app-nav-header',
@@ -15,7 +16,8 @@ export class NavHeaderComponent implements OnInit {
   protected isLoggedIn: boolean = false;
   protected cartQuantity: number = 0;
   private userId: any;
-  protected userType: 'admin' | 'distributor' | 'user' = "user";
+  protected readonly UserType = UserType;
+  protected userType: UserType = UserType.USER;
 
 
   constructor(protected router: Router,
@@ -26,15 +28,15 @@ export class NavHeaderComponent implements OnInit {
 
   async ngOnInit() {
     let userDetails;
-    userDetails = JSON.parse(localStorage.getItem('userDetails') || '');
-    if (!userDetails) {
+    userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    if (!Object.keys(userDetails).length) {
       return;
     }
     this.isLoggedIn = true;
     this.userId = userDetails.id;
     this.userType = userDetails.userType;
     localStorage.setItem('userId', this.userId);
-    if (this.userType !== 'user') {
+    if (this.userType !== UserType.USER) {
       return;
     }
     if (localStorage.getItem('cart-quantity')) {
@@ -61,6 +63,7 @@ export class NavHeaderComponent implements OnInit {
     localStorage.setItem('isLoggedIn', 'false');
     this.isLoggedIn = false;
     this.navigateTo('');
+    this.userType = UserType.USER;
     this.toastr.show("You logged out successfully");
   }
 

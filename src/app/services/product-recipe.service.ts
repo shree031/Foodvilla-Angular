@@ -53,7 +53,6 @@ export class ProductRecipeService {
     return new Promise((resolve, reject) => {
       const url = `${this.baseUrl}products/distributor/${distId}`;
       this.http.get(url).subscribe((res) => {
-        console.log("***************res", res)
         resolve(res);
       }, (err) => {
         reject(err)
@@ -102,6 +101,17 @@ export class ProductRecipeService {
         resolve(null)
       }, (err) => {
         reject(err);
+      })
+    });
+  }
+
+  getAllDistributorProducts() {
+    return new Promise((resolve, reject) => {
+      const url = `${this.baseUrl}products/distributor/`;
+      this.http.get(url).subscribe((res) => {
+        resolve(res);
+      }, (err) => {
+        reject(err)
       })
     });
   }

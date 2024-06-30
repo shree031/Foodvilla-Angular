@@ -25,9 +25,9 @@
         <!-- User type dropdown -->
         <div class="text-box">
           <select name="userType" class="select-style"  [(ngModel)]="userType">
-            <option value="user" selected>User</option>
-            <option value="admin">Admin</option>
-            <option value="distributor">Distributor</option>
+            <option value="{{UserType.USER}}">User</option>
+            <option value="{{UserType.DISTRIBUTOR}}">Distributor</option>
+            <option value="{{UserType.ADMIN}}">Admin</option>
           </select>
         </div>
         <!-- Submit button -->

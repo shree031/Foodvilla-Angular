@@ -44,12 +44,16 @@ html, body {
   font-size: 28px;
 }
 
+.fs-40 {
+  font-size: 40px;
+}
+
 .fs-60 {
   font-size: 60px;
 }
 
-.fs-40 {
-  font-size: 40px;
+.fs-90 {
+  font-size: 90px;
 }
 
 //text
@@ -266,3 +270,18 @@ html, body {
   padding: 40px;
 }
 
+.overlay {
+  position: absolute;
+  text-shadow: 3px 1px red;
+  left: 25%;
+  bottom: 19px;
+}
+
+.tabs {
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid #000;
+  margin: 15px;
+  display: flex;
+  cursor: pointer;
+}

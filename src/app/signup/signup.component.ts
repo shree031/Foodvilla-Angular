@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {LoginService} from "../services/login.service";
 import {NavigationService} from "../services/navigation.service";
 import {ToastrService} from "ngx-toastr";
+import {UserType} from "../modals/enum";
 
 @Component({
   selector: 'app-signup',
@@ -9,12 +10,12 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
-  protected userType: string = 'user'
+  protected userType: UserType = UserType.USER
 
   constructor(private loginService: LoginService,
               private navigationService: NavigationService,
               private toastrService: ToastrService) {
-    if (JSON.parse(localStorage.getItem('isLoggedIn') || '')) {
+    if (JSON.parse(localStorage.getItem('isLoggedIn') || 'false')) {
       this.navigationService.navigateRoot();
     }
   }
@@ -27,4 +28,6 @@ export class SignupComponent {
 
     });
   }
+
+  protected readonly UserType = UserType;
 }

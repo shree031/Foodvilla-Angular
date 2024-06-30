@@ -1,6 +1,13 @@
-<div class="transparent-box cursor-pointer br-8 product-item d-flex flex-column justify-content-between ">
-  <div class="">
-    <img [src]="product.imageUrl" class="height-width br-8" alt="{{product.name}}">
+<div class="transparent-box cursor-pointer br-8 product-item d-flex flex-column justify-content-between">
+  <div [ngClass]="product.status!==null?'text-muted':''">
+    <img [src]="product.imageUrl" class="height-width br-8" alt="{{product.name}}"
+         [ngClass]="product.status!==null?'opacity-50':''">
+    <div class="position-relative" *ngIf="product.status!==null">
+      <div class="text-dark overlay text-center">
+        <i class="bi bi-ban fs-90 text-muted"></i>
+        <h3>Out of stock</h3>
+      </div>
+    </div>
     <div class="p-2">
       <h5 class="">{{product.name}}</h5>
       <p class="description">{{product.description}}</p>

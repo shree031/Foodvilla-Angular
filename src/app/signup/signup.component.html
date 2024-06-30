@@ -46,8 +46,9 @@
           </div>
         </div>
         <select name="userType" class="select-style" [(ngModel)]="userType">
-          <option value="user">User</option>
-          <option value="distributor">Distributor</option>
+          <option value="{{UserType.USER}}">User</option>
+          <option value="{{UserType.DISTRIBUTOR}}">Distributor</option>
+          <option value="{{UserType.ADMIN}}">Admin</option>
         </select>
         <input type="submit" value="Submit" class="fw-bold w-100 p-2 mt-2 fs-18 br-8 default-background text-dark"
                [disabled]="registrationForm.invalid">

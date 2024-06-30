@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CartService} from "../services/cart.service";
+import {CartService} from "../../services/cart.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {Product} from "../modals/modal_def";
+import {Product} from "../../modals/modal_def";
 
 @Component({
   selector: 'app-cart',

@@ -3,6 +3,8 @@ import {ProductRecipeService} from "../services/product-recipe.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {Product} from "../modals/modal_def";
+import {NavigationService} from "../services/navigation.service";
+import {UserType} from "../modals/enum";
 
 @Component({
   selector: 'app-manage-products',
@@ -30,14 +32,30 @@ export class ManageProductsComponent implements OnInit {
   currentProductId: number | null = null;
 
   @ViewChild('targetDiv', {static: false}) targetDiv!: ElementRef;
+  private userDetails: any;
 
-  constructor(private productRecipeService: ProductRecipeService, private fb: FormBuilder, private toastrService: ToastrService) {
+  constructor(private productRecipeService: ProductRecipeService,
+              private fb: FormBuilder,
+              private navigationService: NavigationService,
+              private toastrService: ToastrService) {
+    if (!JSON.parse(localStorage.getItem('isLoggedIn') || 'false')) {
+      this.navigationService.navigateRoot();
+    }
   }
 
   ngOnInit() {
-    this.userId = JSON.parse(localStorage.getItem('userDetails') || '')?.id;
-    this.isLoading = true;
-    this.getProducts();
+    this.userDetails = JSON.parse(localStorage.getItem('userDetails') || '');
+    this.userId = this.userDetails?.id;
+    if (![UserType.DISTRIBUTOR, UserType.ADMIN].includes(this.userDetails.userType)){
+      this.navigationService.navigateRoot();
+    }
+      this.isLoading = true;
+
+    if (this.userDetails.userType===UserType.DISTRIBUTOR) {
+      this.getCurrentDistributorProducts();
+    } else {
+      this.getAllProducts();
+    }
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       imageUrl: ['', Validators.required],
@@ -72,7 +90,7 @@ export class ManageProductsComponent implements OnInit {
             this.showContainer = false;
             this.isEditMode = false;
             this.currentProductId = null;
-            await this.getProducts();
+            await this.getCurrentDistributorProducts();
           },
           (error) => {
             console.error('Error updating product', error);
@@ -84,7 +102,7 @@ export class ManageProductsComponent implements OnInit {
             this.toastrService.show('Product added successfully');
             this.productForm.reset();
             this.showContainer = false;
-            await this.getProducts();
+            await this.getCurrentDistributorProducts();
           },
           (error) => {
             console.error('Error adding product', error);
@@ -115,7 +133,7 @@ export class ManageProductsComponent implements OnInit {
     });
   }
 
-  private getProducts() {
+  private getCurrentDistributorProducts() {
     this.productRecipeService.getDistributorProducts(this.userId).then((products: any[]) => {
       this.products = products;
       this.filteredProducts = products;
@@ -144,7 +162,7 @@ export class ManageProductsComponent implements OnInit {
     console.log("yes pe click kiya: this.currentProductId", this.currentProductId)
     this.productRecipeService.deleteProduct(Number(this.currentProductId)).then(async (res: any[]) => {
       this.toastrService.show("Product deleted successfully");
-      await this.getProducts();
+      await this.getCurrentDistributorProducts();
 
     }).finally(() => this.isLoading = false);
   }
@@ -152,7 +170,7 @@ export class ManageProductsComponent implements OnInit {
   markOutOfStock(product: any) {
     this.productRecipeService.markOutOfStock(Number(product.id)).then(async (res: any[]) => {
       this.toastrService.show("Product marked as out of stock");
-      await this.getProducts();
+      await this.getCurrentDistributorProducts();
 
     }).finally(() => this.isLoading = false);
   }
@@ -160,8 +178,15 @@ export class ManageProductsComponent implements OnInit {
   markAvailable(product: any) {
     this.productRecipeService.markAvailable(Number(product.id)).then(async (res: any[]) => {
       this.toastrService.show("Product marked as available");
-      await this.getProducts();
+      await this.getCurrentDistributorProducts();
     }).finally(() => this.isLoading = false);
   }
 
+  private getAllProducts() {
+    this.productRecipeService.getProducts().then((products: any[]) => {
+      this.products = products;
+      this.filteredProducts = products;
+      this.categories[0].count = products.length;
+    }).finally(() => this.isLoading = false);
+  }
 }

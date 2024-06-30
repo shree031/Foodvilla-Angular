@@ -10,17 +10,17 @@ export interface Product {
 }
 
 export interface Recipe {
-  id?: number; // Optional property for ID
+  id: number;
   name: string;
   description: string;
   likes: number;
-  videoUrl?: string; // Optional property for video URL
-  thumbnailImageUrl?: string; // Optional property for thumbnail image URL
+  videoUrl?: string;
+  thumbnailImageUrl?: string;
 }
 
 export interface IUser {
+  id: number;
   username: string;
-  password: string;
   email: string;
   userType: string;
   address: string;

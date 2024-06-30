@@ -1,0 +1,55 @@
+  <div class="default-background">
+    <header>
+      <app-nav-header></app-nav-header>
+    </header>
+    <ng-container>
+      <app-loader *ngIf="isLoading"></app-loader>
+    </ng-container>
+    <div class="m-5 mb-2" *ngIf="!isLoading">
+      <div class="d-flex w-100 fs-22 justify-content-between">
+        <div class="d-flex align-items-end cursor-pointer">
+          <span class="p-2" [ngClass]="tab===UserType.USER?'selected':'text-muted'" (click)="selectedTab(UserType.USER)">Users</span>
+          <span class="p-2" [ngClass]="tab===UserType.DISTRIBUTOR?'selected':'text-muted'"
+                (click)="selectedTab(UserType.DISTRIBUTOR)">Distributor</span>
+        </div>
+      </div>
+      <div class="width box">
+        <div class="d-flex fs-22 text-nowrap flex-wrap position-relative">
+          <div *ngFor="let user of filteredUsers, index as i"
+          >
+            <div class="d-flex justify-content-end position-absolute">
+              <i class="bi bi-x-circle-fill fs-28 fw-bolder text-danger pos cursor-pointer"
+                 data-bs-toggle="modal"
+                 data-bs-target="#popupModal"
+                 data-toggle="tooltip"
+                 data-placement="top" title="Remove user" (click)="currentUserId=user.id"></i>
+            </div>
+            <div class="m-3 fs-18 row center flex-column glow-up p-2 border border-black border-2 br-8">
+              <span class="col fw-bolder "><i class="bi bi-person-circle fs-22 pe-2"></i>{{user.username}}</span>
+              <span class="col"><i class="bi bi-envelope-at-fill fs-22 pe-2"></i>{{user.email}}</span>
+              <span class="col"><i class="bi bi-geo-alt fs-22 pe-2"></i>{{user.address}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="popupModal" tabindex="-1" role="dialog"
+         aria-labelledby="popupModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog fs-18" role="document">
+        <div class="modal-content default-background br-8">
+          <div class="text-center m-2">
+            <h3 class="text-center text-muted" id="popupModalLabel">Alert</h3>
+          </div>
+          <div class="text-center mt-0 mx-2">
+            Are you sure you want to remove this user?
+          </div>
+          <div class="d-flex justify-content-center m-2">
+            <button type="button" class="theme-color-2 m-1 p-2 px-3" data-bs-dismiss="modal" (click)="deleteUser()">Yes
+            </button>
+            <button type="button" class="theme-color-2 m-1 p-2 px-3" data-bs-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

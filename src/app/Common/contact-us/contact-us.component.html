@@ -17,18 +17,21 @@
         <p class="ps-2"><i class="fa fa-envelope"></i><span class="ps-2"><b>Email:</b> foodvilla123@gmail.com</span></p>
       </div>
       <div class="bg-white text-dark d-flex flex-column border-radius-top p-5 mx-5 pb-2 mt-5">
-        <form (ngSubmit)="sendEmail()">
+        <form (ngSubmit)="sendMessage()">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h1 class="fs-40 text-muted me-3">Leave a message</h1>
             <button type="submit" class="ms-2 br-8">Send</button>
+            <i class="bi fs-60 bi-telegram"></i>
           </div>
           <div class="d-flex justify-content-between mb-4">
-            <input type="text" name="fullName" [(ngModel)]="fullName" required placeholder="Full Name" class="border-0 br-8"/>
-            <input type="email" name="email" [(ngModel)]="email" required placeholder="Email" class="border-0 br-8"/>
+            <input type="text" name="fullName" [(ngModel)]="fullName" required placeholder="Full Name"
+                   class="border-0 br-8"/>
           </div>
-          <textarea rows="2" name="message" [(ngModel)]="message" required placeholder="Type your message"></textarea>
+          <textarea rows="2" name="message" [(ngModel)]="message" required placeholder="Type your message"
+                    class="text-dark"></textarea>
         </form>
       </div>
+
     </div>
   </div>
 </div>

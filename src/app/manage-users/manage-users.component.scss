@@ -1,0 +1,26 @@
+.selected {
+  border: 3px solid gray;
+  border-radius: 8px 8px 0px 0px;
+  border-bottom: 0px;
+  font-weight: bolder;
+  background: #fe81001f;
+  margin-bottom: -3px;
+}
+
+.box {
+  background: #fe81001f;
+  padding-top: 26px;
+  border-radius: 8px;
+  border: 3px solid grey;
+  color: black;
+}
+
+.width {
+  width: calc(100vw - 100px) !important;
+}
+
+.glow-up:hover{
+  box-shadow: 4px 11px 20px -4px #fe8100;
+  border: 1px solid #fe8100 !important;
+}
+

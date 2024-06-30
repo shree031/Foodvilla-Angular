@@ -27,7 +27,7 @@ export class LoginService {
     });
   }
 
-  register(userData: IUser) {
+  register(userData:any) {
     return new Promise((resolve, reject) => {
       const encryptedPassword = btoa(userData.password);
       this.http.post<any>(this.baseUrl + 'register', {...userData, password: encryptedPassword}).subscribe(

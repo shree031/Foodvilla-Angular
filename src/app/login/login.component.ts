@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {LoginService} from "../services/login.service";
 import {NavigationService} from "../services/navigation.service";
 import {ToastrService} from "ngx-toastr";
+import {UserType} from "../modals/enum";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ import {ToastrService} from "ngx-toastr";
 })
 export class LoginComponent implements OnInit {
   protected errorMessage: string | undefined;
-  protected userType: string = 'user'
+  protected userType: UserType = UserType.USER
+  protected readonly UserType = UserType;
 
   constructor(private loginService: LoginService,
               private navigationService: NavigationService,
@@ -33,4 +35,5 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
 }
