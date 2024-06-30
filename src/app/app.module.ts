@@ -24,8 +24,7 @@ import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.compo
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import {ManageProductsComponent} from './manage-products/manage-products.component';
-import { ManageUsersComponent } from './manage-users/manage-users.component';
-import { PaperPlaneComponent } from './paper-plane/paper-plane.component';
+import {ManageUsersComponent} from './manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -47,8 +46,7 @@ import { PaperPlaneComponent } from './paper-plane/paper-plane.component';
     CartComponent,
     RecipeDetailComponent,
     ManageProductsComponent,
-    ManageUsersComponent,
-    PaperPlaneComponent
+    ManageUsersComponent
   ],
   imports: [
     BrowserModule,
