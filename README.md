@@ -29,7 +29,7 @@ To get a local copy of the project up and running, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/shree031/foodvilla-aAngular.git
+   git clone https://github.com/shree031/foodvilla-angular.git
     ```
 2. **Install dependencies:**
     ```bash
