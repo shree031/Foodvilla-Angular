@@ -30,5 +30,21 @@ To get a local copy of the project up and running, follow these steps:
 
    ```bash
    git clone https://github.com/shree031/foodvilla-aAngular.git
-  ```
+    ```
+2. **Install dependencies:**
+    ```bash
+   npm install
+    ```
+3. **Run the application:**
+   ```
+   ng serve
+   ```
+4. **Open your browser and go to http://localhost:4200 to view the application.**
+
+## 🔗 Backend Integration
+
+This frontend project is designed to work with the FoodVilla-SpringBoot, which is available at [FoodVilla Backend Repository](https://github.com/shree031/foodvilla-springboot). Please ensure that the backend server is running to access full functionality.
+
+
+
 
